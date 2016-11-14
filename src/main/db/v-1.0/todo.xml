@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="CREATE_SEQUENCE_todo_seq" author="Pavel Kurakin">
+        <comment>Последовательность для таблицы список задач</comment>
+        <createSequence sequenceName="todo_seq" startValue="11"/>
+        <rollback>
+            drop sequence todo_seq;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="CREATE_TABLE_todo" author="Pavel Kurakin">
+        <preConditions onFail="HALT" onError="HALT">
+            <sequenceExists sequenceName="todo_seq"/>
+        </preConditions>
+        <comment>Таблица - спичок задач</comment>
+        <sqlFile path="todo.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            drop table todo;
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

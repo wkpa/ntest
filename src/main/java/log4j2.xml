@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" strict="true" >
+    <Properties>
+        <Property name="log-path">logs</Property>
+    </Properties>
+
+    <Appenders>
+        <Appender type="Console" name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Appender>
+
+        <Appender type="RollingFile"
+                  name="APP-FILE"
+                  fileName="${log-path}/ntest.log"
+                  filePattern="${log-path}/%d{dd-MM-yyyy}-ntest.log">
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="1 MB" />
+            </Policies>
+            <Layout type="PatternLayout">
+                <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS}{GMT+3} %-5level: [%t] [%logger{36}] - %msg%n</Pattern>
+            </Layout>
+        </Appender>
+
+        <Appender type="RollingFile"
+                  name="ORM-FILE"
+                  fileName="${log-path}/ntest-orm.log"
+                  filePattern="${log-path}/%d{dd-MM-yyyy}-ntest-orm.log">
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="1 MB" />
+            </Policies>
+            <Layout type="PatternLayout">
+                <Pattern>%d{HH:mm:ss.SSS}{GMT+3} %-5level: [%t] [%c{5}] - %msg%n</Pattern>
+            </Layout>
+        </Appender>
+
+    </Appenders>
+
+    <Loggers>
+        <Logger name="ntest" level="DEBUG" additivity="false">
+            <AppenderRef ref="APP-FILE"/>
+            <AppenderRef ref="CONSOLE"/>
+        </Logger>
+
+        <!--Hibernate-->
+        <Logger name="org.hibernate.SQL" level="TRACE">
+            <AppenderRef ref="ORM-FILE"/>
+        </Logger>
+
+        <Logger name="org.hibernate.type" level="TRACE">
+            <AppenderRef ref="ORM-FILE"/>
+        </Logger>
+        <!--Hibernate-->
+
+        <Root level="ERROR">
+            <AppenderRef ref="CONSOLE"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

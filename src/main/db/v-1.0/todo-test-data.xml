@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="INSERT_TEST_DATA_todo" author="Pavel Kurakin">
+        <preConditions onFail="HALT" onError="HALT">
+            <tableExists tableName="todo"/>
+        </preConditions>
+        <comment>Вставка данных в таблицу список задач</comment>
+        <insert tableName="todo">
+            <column name="id" value="1"/>
+            <column name="name" value="Задача 1"/>
+            <column name="description" value="Подробное описание задачи 1"/>
+        </insert>
+        <insert tableName="todo">
+            <column name="id" value="2"/>
+            <column name="name" value="Задача 2"/>
+            <column name="description" value="Подробное описание задачи 2"/>
+        </insert>
+        <insert tableName="todo">
+            <column name="id" value="3"/>
+            <column name="name" value="Задача 3"/>
+            <column name="description" value="Подробное описание задачи 3"/>
+        </insert>
+        <insert tableName="todo">
+            <column name="id" value="4"/>
+            <column name="name" value="Задача 4"/>
+            <column name="description" value="Подробное описание задачи 4"/>
+        </insert>
+        <insert tableName="todo">
+            <column name="id" value="5"/>
+            <column name="name" value="Задача 5"/>
+            <column name="description" value="Подробное описание задачи 5"/>
+        </insert>
+        <insert tableName="todo">
+            <column name="id" value="6"/>
+            <column name="name" value="Задача 6"/>
+            <column name="description" value="Подробное описание задачи 6"/>
+        </insert>
+        <insert tableName="todo">
+            <column name="id" value="7"/>
+            <column name="name" value="Задача 7"/>
+            <column name="description" value="Подробное описание задачи 7"/>
+        </insert>
+        <insert tableName="todo">
+            <column name="id" value="8"/>
+            <column name="name" value="Задача 8"/>
+            <column name="description" value="Подробное описание задачи 8"/>
+        </insert>
+        <insert tableName="todo">
+            <column name="id" value="9"/>
+            <column name="name" value="Задача 9"/>
+            <column name="description" value="Подробное описание задачи 9"/>
+        </insert>
+        <insert tableName="todo">
+            <column name="id" value="10"/>
+            <column name="name" value="Задача 10"/>
+            <column name="description" value="Подробное описание задачи 10"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
