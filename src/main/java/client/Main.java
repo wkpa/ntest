@@ -129,19 +129,24 @@ public class Main implements EntryPoint {
         });
 
         //Диалог редактирования
+        final ToDoDTO[] task = {null};
+
         final DialogBox editDialog = new DialogBox();
         editDialog.setGlassEnabled(true);
         editDialog.setAnimationEnabled(true);
 
         VerticalPanel formDialogContent = new VerticalPanel();
+        formDialogContent.setStyleName("ntest");
 
         HorizontalPanel namePanel = new HorizontalPanel();
+        namePanel.setStyleName("ntest");
         Label nameLabel = new Label("Название задачи:");
         final TextBox name = new TextBox();
         namePanel.add(nameLabel);
         namePanel.add(name);
 
         HorizontalPanel descriptionPanel = new HorizontalPanel();
+        descriptionPanel.setStyleName("ntest");
         Label descriptionLabel = new Label("Описание задачи:");
         final TextArea description = new TextArea();
 
@@ -149,8 +154,7 @@ public class Main implements EntryPoint {
         descriptionPanel.add(description);
 
         HorizontalPanel buttonPanel = new HorizontalPanel();
-
-        final ToDoDTO[] task = {null};
+        buttonPanel.setStyleName("ntest");
 
         Button saveButton = new Button("Сохранить", new ClickHandler() {
             public void onClick(ClickEvent event) {
@@ -184,18 +188,18 @@ public class Main implements EntryPoint {
                 editDialog.hide();
             }
         });
-
         buttonPanel.add(saveButton);
         buttonPanel.add(cancelButton);
 
         formDialogContent.add(namePanel);
         formDialogContent.add(descriptionPanel);
         formDialogContent.add(buttonPanel);
-        editDialog.add(formDialogContent);
+        editDialog.setWidget(formDialogContent);
 
         addButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 task[0] = new ToDoDTO();
+                editDialog.setText("Новая задача");
                 editDialog.center();
                 editDialog.show();
             }
@@ -207,6 +211,7 @@ public class Main implements EntryPoint {
                 final ToDoDTO selected = selectionModel.getSelectedObject();
                 if (selected != null) {
                     task[0] = selected;
+                    editDialog.setText("Задача " + task[0].getName() + "[редактирование]");
                     name.setValue(task[0].getName());
                     description.setValue(task[0].getDescription());
                     editDialog.center();

@@ -5,6 +5,7 @@
     <source path="shared"/>
 
     <inherits name='com.google.gwt.user.User'/>
+    <inherits name='com.google.gwt.user.theme.clean.Clean'/>
 
     !--  GWT dispatch -->
     <inherits name='net.customware.gwt.dispatch.Dispatch' />
